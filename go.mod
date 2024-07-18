@@ -1,3 +1,3 @@
-module github.com/open-runtimes/types-for-go
+module github.com/utopia-go/di
 
 go 1.22
