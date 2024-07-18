@@ -1,3 +1,3 @@
-module github.com/utopia-go/di/v0
+module github.com/utopia-go/di
 
 go 1.22
