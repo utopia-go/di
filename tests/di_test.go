@@ -1,14 +1,15 @@
-package di
+package tests
 
 import (
 	"fmt"
+	"github.com/utopia-go/di"
 	"testing"
 )
 
 func TestDi(t *testing.T) {
-	container := NewContainer()
+	container := di.NewContainer()
 
-	user := Dependency{
+	user := di.Dependency{
 		Name: "user",
 		Callback: func(params ...interface{}) interface{} {
 			return fmt.Sprintf("John doe is %d years old", params[0])
@@ -17,7 +18,7 @@ func TestDi(t *testing.T) {
 
 	user.Inject("age")
 
-	age := Dependency{
+	age := di.Dependency{
 		Name: "age",
 		Callback: func(params ...interface{}) interface{} {
 			return 25
