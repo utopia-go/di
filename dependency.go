@@ -7,17 +7,21 @@ import (
 )
 
 type Dependency struct {
-	dependencies []string
-	name         string
-	callback     func(params ...interface{}) interface{}
+	Dependencies []string
+	Name         string
+	Callback     func(params ...interface{}) interface{}
 }
 
-func (injection *Dependency) inject(name string) (*Dependency, error) {
-	if slices.Contains(injection.dependencies, name) {
+func NewDependency(name string, callback func(params ...interface{}) interface{}) Dependency {
+	return Dependency{Name: name, Callback: callback}
+}
+
+func (injection *Dependency) Inject(name string) (*Dependency, error) {
+	if slices.Contains(injection.Dependencies, name) {
 		return injection, errors.New(fmt.Sprintf("Dependency already declared for %s", name))
 	}
 
-	injection.dependencies = append(injection.dependencies, name)
+	injection.Dependencies = append(injection.Dependencies, name)
 
 	return injection, nil
 }
