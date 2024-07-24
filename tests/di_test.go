@@ -18,15 +18,10 @@ func TestDi(t *testing.T) {
 
 	user.Inject("age")
 
-	age := di.Dependency{
-		Name: "age",
-		Callback: func(params ...interface{}) interface{} {
-			return 25
-		},
-	}
-
 	container.Set(user)
-	container.Set(age)
+	container.Set(di.NewDependency("age", func(params ...interface{}) interface{} {
+		return 25
+	}))
 
 	if userObject, err := container.Get("user"); err == nil {
 		got := userObject
