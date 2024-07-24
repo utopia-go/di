@@ -6,13 +6,15 @@ import (
 	"slices"
 )
 
+type Callback func(params ...interface{}) interface{}
+
 type Dependency struct {
 	Dependencies []string
 	Name         string
-	Callback     func(params ...interface{}) interface{}
+	Callback     Callback
 }
 
-func NewDependency(name string, callback func(params ...interface{}) interface{}) Dependency {
+func NewDependency(name string, callback Callback) Dependency {
 	return Dependency{Name: name, Callback: callback}
 }
 
